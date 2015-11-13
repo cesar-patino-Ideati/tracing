@@ -1,0 +1,31 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-calm">
+      <ion-nav-back-button></ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+  <ion-side-menu side="left">
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close class="item-image" href="#/app/home">
+          <img src="img/mined.png">    
+        </ion-item>
+        <ion-item class="bar bar-calm">
+          <h1 class="title">Sistema Tracing</h1>
+        </ion-item>
+        <ion-item menu-close href="#/app/nueva">
+          <i class="ion-compose icon" style="font-size:1.5em"></i>&nbsp;Nueva encuesta</ion-item>
+        <ion-item menu-close href="#/app/list">
+          <i class="ion-eye" style="font-size:1.5em"></i>&nbsp;Encuestas almacendas</ion-item>
+        <ion-item menu-close href="#/app/sync">
+          <i class="ion-upload" style="font-size:1.5em"></i>&nbsp;Sincronización</ion-item>
+        <ion-item menu-close href="#/app/settings">
+          <i class="ion-gear-b" style="font-size:1.5em"></i>&nbsp;Ajustes</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

@@ -1,0 +1,81 @@
+<ion-view view-title="Consultar encuesta">
+    <ion-content overflow-scroll="true">
+        <form name="encuestaForm" novalidate autocomplete="off">
+            <div id="encabezado">
+                <h1>{{formulario.Instrumento.Nombre}}</h1>
+                <div>
+                    <div class="row  responsive-sm">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Fecha<br/>
+                            {{encuesta.Encabezado.Fecha}}
+                            
+                        </label>
+                        <div class="col-75 item item-input item-stacked-label item-divider">
+                            <label>
+                                <b>Centro Escolar</b><br/>
+                                {{encuesta.Encabezado.CentroEscolar.title}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario!='Anónimo'">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Primer Apellido<br/>
+                            {{encuesta.Encabezado.PrimerApellido}}
+                            
+                        </label>
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Segundo Apellido<br/>
+                            {{encuesta.Encabezado.SegundoApellido}}
+                            
+                        </label>
+                        <label class="col-50 item item-input item-stacked-label item-divider">
+                            Nombres<br/>
+                            {{encuesta.Encabezado.Nombres}}
+                        </label>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario=='Funcionario'">
+                        <label class="col-50 item item-input item-stacked-label item-divider">
+                            Cargo<br/>
+                            {{encuesta.Encabezado.Cargo}}
+                        </label>
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Código funcionario<br/>
+                            {{encuesta.Encabezado.CodgioFuncionario}}
+                        </label>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario=='Docente'">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Código funcionario<br/>
+                            {{encuesta.Encabezado.CodgioFuncionario}}
+                        </label>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario=='Estudiante'">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Grado<br/>
+                            {{encuesta.Encabezado.Grado}}
+                        </label>
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Código estudiante<br/>
+                            {{encuesta.Encabezado.CodigoEstudiante}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="unaPregunta in formulario.Preguntas">
+                <div class="row item item-divider ">
+                    <div>{{$index + 1}}<span>) </span>{{unaPregunta.Enunciado}}</div>
+                </div>
+                <div class="list padding">
+                    <label class="item item-radio" ng-repeat="unaRespuesta in split(unaPregunta.OpcionesRespuesta)  track by $index">
+                        <input type="radio" readonly value="{{unaRespuesta}}" name="radio{{unaPregunta.Id}}" ng-model="unaPregunta.Respuesta" />
+                        <div class="item-content">{{unaRespuesta}}</div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <input type="button" class="button  button-balanced" ng-click="Eliminar()" value="Eliminar"/> 
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,36 @@
+<ion-view view-title="Encuestas capturadas" ng-controller="ListCtrl">
+  <ion-content>
+    <p class="item item-icon-right" ng-if="!PuedeEliminar">
+      No hay encuestas pendientes por sincronizar
+      <span class="icon ion-checkmark-circled balanced"></span>
+    </p>
+    <ion-list>
+      <ion-item collection-repeat="encuesta in Lista" class="item-remove-animate"> 
+        <div>
+          <strong>Instrumento: </strong><span>{{encuesta.doc.Instrumento.Nombre}}</span>
+        </div>
+        <div>
+          <strong>Centro escolar: </strong><span>{{encuesta.doc.Encabezado.CentroEscolar.title}}</span>
+        </div>
+        <div>
+          <strong>Encuestado: </strong><span>{{encuesta.doc.Encabezado.Nombres}} {{encuesta.doc.Encabezado.PrimerApellido}} {{encuesta.doc.Encabezado.SegundoApellido}}</span>
+        </div>
+        <div>
+          <strong>Fecha: </strong><span>{{encuesta.doc.Encabezado.Fecha | date : "dd/MM/yyyy" : UTC}}</span>
+        </div>
+        <div class="item-options visible">
+          <button class="button button-assertive icon-left ion-minus-circled" ng-click="confirmarEliminar(encuesta)">
+            Eliminar
+          </button>
+        </div>        
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+  <ion-footer-bar align-title="left" ng-if="PuedeEliminar">
+    <div class="buttons">
+      <button class="button button-positive" ng-click="cargarEncuestas()">Sincronizar encuestas</button>
+    </div>
+  </ion-footer-bar>  
+  
+</ion-view>

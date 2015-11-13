@@ -1,0 +1,10 @@
+/* Empty. Add your own CSS if you like */
+.text-alert{
+	color:red;
+	display: block;
+	font-size: 0.8em;
+    font-weight: normal;
+}
+input.ancho100{
+	width:100%;
+}

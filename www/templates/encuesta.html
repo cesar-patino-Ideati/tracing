@@ -1,0 +1,119 @@
+<ion-view view-title="Capturar encuesta">
+    <ion-content overflow-scroll="true">
+        <form name="encuestaForm" novalidate autocomplete="off">
+            <div id="encabezado">
+                <h1>{{formulario.Instrumento.Nombre}}</h1>
+                <div>
+                    <div class="row  responsive-sm">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Fecha
+                            <input type="date" id="Fecha" name="Fecha" class="form-control" ng-model="encuesta.Encabezado.Fecha" required />
+                            <span class="text-alert" ng-show="encuestaForm.Fecha.$invalid && !encuestaForm.Fecha.$pristine">Fecha es requerida</span>
+                        </label>
+                        <div class="col-75 item item-input item-stacked-label item-divider">
+                            <label>
+                                <b>Centro Escolar</b>
+                                <angucomplete-alt id="ex1" pause="100" selected-object="encuesta.Encabezado.CentroEscolar" local-data="formulario.CentrosEscolares"
+                                search-fields="Nombre" title-field="Nombre" description-field="NucleoEscolarMunicipioNombre"
+                                minlength="1" input-class="form-control" text-searching="Buscando..." text-no-results="Valor no encontrado"
+                                input-name="CentroEscolar" field-required="true" enable-clear-search-btn="true" />
+                            </label>
+                            <input type="hidden" name="__CentroEscolar" required ng-model="encuesta.Encabezado.CentroEscolar.title" />
+                            <span class="text-alert" ng-show="encuestaForm.__CentroEscolar.$invalid">Centro Escolar es requerido</span>
+                        </div>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario!='Anónimo'">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Primer Apellido
+                            <input type="text" name="PrimerApellido" class="form-control" ng-model="encuesta.Encabezado.PrimerApellido" ng-required="formulario.Instrumento.Destinatario!='Anónimo'"
+                            />
+                            <span class="text-alert" ng-show="encuestaForm.PrimerApellido.$invalid ">
+                            Primer Apellido es requerido
+                        </span>
+                        </label>
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Segundo Apellido
+                            <input type="text" name="SegundoApellido" class="form-control" ng-model="encuesta.Encabezado.SegundoApellido" ng-required="formulario.Instrumento.Destinatario!='Anónimo'"
+                            />
+                            <span class="text-alert" ng-show="encuestaForm.SegundoApellido.$invalid ">
+                            Primer Apellido es requerido
+                        </span>
+                        </label>
+                        <label class="col-50 item item-input item-stacked-label item-divider">
+                            Nombres
+                            <input type="text" name="Nombres" class="form-control" ng-model="encuesta.Encabezado.Nombres" ng-required="formulario.Instrumento.Destinatario!='Anónimo'"
+                            />
+                            <span class="text-alert" ng-show="encuestaForm.Nombres.$invalid ">
+                            Nombres es requerido
+                        </span>
+                        </label>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario=='Funcionario'">
+                        <label class="col-50 item item-input item-stacked-label item-divider">
+                            Cargo
+                            <input type="text" name="Cargo" class="form-control" ng-model="encuesta.Encabezado.Cargo" ng-required="formulario.Instrumento.Destinatario=='Funcionario'"
+                            />
+                            <span class="text-alert" ng-show="encuestaForm.Cargo.$invalid && !encuestaForm.Cargo.$pristine ">
+                            Cargo es requerido
+                        </span>
+                        </label>
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Código funcionario
+                            <input type="text" name="CodigoFuncionario" class="form-control" ng-model="encuesta.Encabezado.CodgioFuncionario" ng-required="formulario.Instrumento.Destinatario=='Funcionario'"
+                            />
+                            <span class="text-alert" ng-show="encuestaForm.CodigoFuncionario.$invalid && !encuestaForm.CodigoFuncionario.$pristine ">
+                            Código funcionario es requerido
+                        </span>
+                        </label>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario=='Docente'">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Código funcionario
+                            <input type="text" name="CodigoFuncionarioDocente" class="form-control" ng-model="encuesta.Encabezado.CodgioFuncionario"
+                            ng-required="formulario.Instrumento.Destinatario=='Docente'" />
+                            <span class="text-alert" ng-show="encuestaForm.CodigoFuncionarioDocente.$invalid && !encuestaForm.CodigoFuncionarioDocente.$pristine ">
+                            Código funcionario es requerido
+                        </span>
+                        </label>
+                    </div>
+                    <div class="row  responsive-sm " ng-show="formulario.Instrumento.Destinatario=='Estudiante'">
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Grado
+                            <input type="text" class="form-control" ng-model="encuesta.Encabezado.Grado" />
+                        </label>
+                        <label class="col-25 item item-input item-stacked-label item-divider">
+                            Código estudiante
+                            <input type="text" class="form-control" ng-model="encuesta.Encabezado.CodigoEstudiante" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="unaPregunta in formulario.Preguntas">
+                <div class="row item item-divider ">
+                    <div>{{$index + 1}}<span>) </span>{{unaPregunta.Enunciado}}</div>
+                </div>
+                <div class="list padding">
+                    <label class="item item-radio" ng-repeat="unaRespuesta in split(unaPregunta.OpcionesRespuesta)  track by $index" ng-if="unaPregunta.OpcionesRespuesta != 'PreguntaAbierta' && unaPregunta.seleccion_multiple == 'No'">
+                        <input type="radio" value="{{unaRespuesta}}" name="radio{{unaPregunta.Id}}" ng-model="unaPregunta.Respuesta" />
+                        <div class="item-content">{{unaRespuesta}}</div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                    <label ng-repeat="unaRespuesta in split(unaPregunta.OpcionesRespuesta)  track by $index" ng-if="unaPregunta.OpcionesRespuesta != 'PreguntaAbierta' && unaPregunta.seleccion_multiple == 'Si'">
+                        <ion-checkbox name="radio{{unaPregunta.Id}}" ng-model="unaPregunta.Respuesta[$index]" ng-true-value="'{{unaRespuesta}}'" ng-false-value="null">{{unaRespuesta}}</ion-checkbox>
+                    </label>
+                    <label class="item item-input" ng-if="unaPregunta.seleccion_multiple == 'No' && unaPregunta.OpcionesRespuesta == 'PreguntaAbierta'">
+                        <textarea ng-model="unaPregunta.Respuesta"></textarea>
+                    </label>
+                </div>
+
+                
+            </div>
+            <div class="row">
+                <input type="button" class="button  button-balanced" ng-click="rectificarSalvado(1)" value="Salvar y capturar nueva" ng-disabled="salvando || encuestaForm.$invalid"
+                /> &nbsp;&nbsp;
+                <input type="button" class="button  button-balanced" ng-click="rectificarSalvado(0)" value="Salvar" ng-disabled="salvando || encuestaForm.$invalid"
+                /> &nbsp;&nbsp;
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

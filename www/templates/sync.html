@@ -1,0 +1,22 @@
+<ion-view view-title="Sincronización">
+  <ion-content padding="true">
+    <ion-list class="list-inset">
+      <ion-item class="item-divider row">
+        <span class="col col-90">Estado</span>
+        <ion-spinner class="col"></ion-spinner>
+      </ion-item>
+      <ion-item>
+        <strong>Conexión:</strong> {{Estado.conexion}}
+      </ion-item>
+      <ion-item>
+        <strong>Última actualización:</strong> {{Estado.sincronizacion}}
+      </ion-item>
+      <ion-item>
+        <strong>Encuentas por enviar:</strong> {{Estado.encuestas}}
+      </ion-item>
+    </ion-list>
+    <div class="padding">
+      <button  class="button button-block button-balanced" ng-click="Sincronizar()">Sincronizar ahora</button>
+    </div>
+  </ion-content>
+</ion-view>

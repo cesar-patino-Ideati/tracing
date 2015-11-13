@@ -1,0 +1,26 @@
+<ion-view view-title="Ajustes" >
+    <ion-content padding="true">                
+        <form name="settingsForm" class="list list-inset">
+            <label for="url" class="item item-input item-stacked-label">
+                <span class="input-label">URL</span>
+                <input type="url" name="url" ng-model="Ajustes.url" name="url" required>
+                <span class="text-alert" ng-show="settingsForm.url.$invalid">URL inválido</span>
+            </label>
+            <label for="email" class="item item-input item-stacked-label">
+                <span class="input-label">Usuario</span>
+                <input type="email" name="email" placeholder="usuario@dominio.gob.ni" ng-model="Ajustes.usuario" required>
+                <span class="text-alert" ng-show="settingsForm.email.$invalid">Usuario inválido</span>
+            </label>
+            <label for="password" class="item item-input item-stacked-label">
+                <span class="input-label">Contraseña</span>
+                <input type="password" name="password" ng-model="Ajustes.contrasena" required>
+                <span class="text-alert" ng-show="settingsForm.password.$invalid">Contraseña requerida</span>
+            </label>
+        </form>
+        <div class="padding">
+            <buton class="button button-block button-balanced" data-ng-disabled="settingsForm.$invalid" ng-click="autenticarYSalvar()">
+                Autenticar y Salvar
+            </buton>
+        </div>
+    </ion-content>
+</ion-view>        

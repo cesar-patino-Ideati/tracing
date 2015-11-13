@@ -1,0 +1,56 @@
+<ion-view view-title="Nueva encuesta">
+  <ion-content overflow-scroll="true">
+    
+      
+    <div ng-repeat="instrumento in instrumentos">
+      <div class="row responsive-sm " ng-if="$index % 3===0">
+        <div class="list card col-25" ng-click="capturar($index)">
+          <div class="item item-header item-divider">
+            {{instrumentos[$index].Nombre}}
+            <p>
+              <i class="ion-person"></i> {{instrumentos[$index].Destinatario}}</p>
+          </div>
+          <div class="item ">
+            <i class="ion-record positive">&nbsp;{{instrumentos[$index].TipoInstrumento}}</i>&nbsp;
+            <i class="ion-record balanced">&nbsp;{{instrumentos[$index].CantidadPreguntas}} preguntas</i>
+          </div>
+          <div class="item item-body">
+            <h2>{{instrumentos[$index].Nombre}}</h2>
+            <p>{{instrumentos[$index].Descripcion | limitTo:150}}</p>
+          </div>
+        </div>
+        <div class="list card col-25" ng-if="$index+1<instrumentos.length" ng-click="capturar($index+1)">
+          <div class="item item-header item-divider">
+             {{instrumentos[$index + 1].Nombre}}
+            <p>
+              <i class="ion-person"></i> {{instrumentos[$index +1].Destinatario}}</p>
+          </div>
+          <div class="item ">
+            <i class="ion-record positive"> {{instrumentos[$index+1].TipoInstrumento}}</i>&nbsp;
+            <i class="ion-record balanced"> {{instrumentos[$index+1].CantidadPreguntas}} preguntas</i>
+          </div>
+          <div class="item item-body">
+            <h2>{{instrumentos[$index+1].Nombre}}</h2>
+            <p>{{instrumentos[$index+1].Descripcion}}</p>
+          </div>
+        </div>
+        <div class="list card col-25" ng-if=" $index+2<instrumentos.length" ng-click="capturar($index+2)">
+          <div class="item item-header item-divider">
+             {{instrumentos[$index +2].Nombre}}
+            <p>
+              <i class="ion-person"></i> {{instrumentos[$index +2].Destinatario}}</p>
+          </div>
+          <div class="item ">
+            <i class="ion-record positive"> {{instrumentos[$index+2].TipoInstrumento}}</i>&nbsp;
+            <i class="ion-record balanced"> {{instrumentos[$index+2].CantidadPreguntas}} preguntas</i>
+          </div>
+          <div class="item item-body">
+            <h2>{{instrumentos[$index+2].Nombre}}</h2>
+            <p>{{instrumentos[$index+2].Descripcion}}</p>
+          </div>
+        </div>
+      
+        
+    </div>
+  </ion-content>
+</ion-view>
